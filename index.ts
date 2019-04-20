@@ -1,22 +1,52 @@
-const isOpen: boolean = false;
-const firstname: string = 'Tucker';
-const myAge: number = 32;
-const list: number[] = [0, 1, 2, 3];
-const me: [string, number] = ['scott', 32];
-enum Job {
-	WebDev,
-	WebDesigner,
-	PM
-}
-const job: Job = Job.WebDev;
-const phone: any = 'Scott';
-const tablet: any = '3';
+import React, { useReducer } from 'react';
+import './App.css';
 
-const sayWord = (word = 'Hello'): string => {
-	return word;
+interface CountState {
+	count: number;
+}
+
+const reducer = (state: { count: number }, action: { type: string }): CountState => {
+	console.log(action);
+	console.log(state);
+	switch (action.type) {
+		case 'ADD':
+			return { ...state, count: state.count + 1 };
+		case 'SUBTRACT':
+			return { ...state, count: state.count - 1 };
+		case 'RESET':
+			return { ...state, count: 0 };
+		default:
+			return state;
+	}
 };
 
-let newName = "scott";
+const buttonStyles = {
+	padding: '10px',
+	background: 'dodgerblue',
+	color: 'white',
+	borderRadius: '4px',
+	margin: '1em auto',
+	width: '100px'
+};
 
-newName = "Wes";
-newName = 10;
+// const Counter: React.FunctionComponent = () => {
+// 	const [state, dispatch] = useReducer(reducer, { count: 0 });
+// 	return (
+// 		<div className="App">
+// 			<header className="App-header">
+// 				Current count: {state.count}
+// 				<button style={buttonStyles} onClick={() => dispatch({ type: 'ADD' })}>
+// 					ADD
+// 				</button>
+// 				<button style={buttonStyles} onClick={() => dispatch({ type: 'SUBTRACT' })}>
+// 					SUBTRACT
+// 				</button>
+// 				<button style={buttonStyles} onClick={() => dispatch({ type: 'RESET' })}>
+// 					RESET
+// 				</button>
+// 			</header>
+// 		</div>
+// 	);
+// };
+
+export default Counter;
